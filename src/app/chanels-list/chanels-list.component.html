@@ -1,0 +1,147 @@
+<div class="card">
+  <p-table
+    [value]="customers"
+    rowGroupMode="rowspan"
+    groupRowsBy="groupName"
+    sortField="groupName"
+    dataKey="id"
+    sortMode="single"
+    editMode="row"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Group Name</th>
+        <th>Channel Name</th>
+        <th>Channel Type</th>
+        <th>Channel Description</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-customer
+      let-editing="editing"
+      let-rowIndex="rowIndex"
+      let-rowgroup="rowgroup"
+      let-rowspan="rowspan"
+    >
+      <tr [pEditableRow]="customer">
+        <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p>
+                <input
+                  [(ngModel)]="customer.groupName"
+                  pInputText
+                  style="width:77%"
+                  type="text"
+                />
+              </p>
+            </ng-template>
+
+            <ng-template pTemplate="output">
+              <span class="p-text-bold p-ml-2">{{ customer.groupName }}</span>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p>
+                <input
+                  [(ngModel)]="customer.channelName"
+                  pInputText
+                  style="width:77%"
+                  type="text"
+                />
+              </p>
+            </ng-template>
+
+            <ng-template pTemplate="output">
+              {{ customer?.channelName }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p>
+                <p-dropdown
+                  [options]="channelTypes"
+                  [(ngModel)]="customer.channelType"
+                  optionLabel="name"
+                  optionValue="value"
+                  placeholder="Channel Type"
+                ></p-dropdown>
+              </p>
+            </ng-template>
+
+            <ng-template pTemplate="output">
+              {{ customer?.channelType }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p>
+                <input
+                  [(ngModel)]="customer.channelDescription"
+                  pInputText
+                  style="width:77%"
+                  type="text"
+                />
+              </p>
+            </ng-template>
+
+            <ng-template pTemplate="output">
+              {{ customer?.channelDescription }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td style="text-align:center">
+          <button
+            (click)="onRowEditInit(customer)"
+            *ngIf="!editing"
+            [disabled]="this.isRowEditable"
+            class="ui-button-info mr-2 p-button-sm"
+            icon="pi pi-pencil"
+            pButton
+            pInitEditableRow
+            pRipple
+            type="button"
+          ></button>
+
+          <button
+            (click)="onRowEditSave(customer, dt)"
+            *ngIf="editing"
+            class="p-button-success p-button-sm"
+            icon="pi pi-check"
+            pButton
+            pSaveEditableRow
+            style="margin-right: .5em"
+            type="button"
+          ></button>
+          <button
+            (click)="onRowEditCancel(customer, ri, dt)"
+            *ngIf="editing"
+            class="p-button-danger p-button-sm"
+            icon="pi pi-times"
+            pButton
+            pCancelEditableRow
+            type="button"
+          ></button>
+          <button
+            (click)="onRowDeleteInit($event, customer.id, customer.id)"
+            *ngIf="!editing"
+            [disabled]="this.isRowEditable"
+            class="p-button-danger p-button-sm"
+            icon="pi pi-trash"
+            pButton
+            type="button"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

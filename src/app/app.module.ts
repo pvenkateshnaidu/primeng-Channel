@@ -29,6 +29,8 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AddRowDirective } from './add-row.directive';
+import { ChanelsListComponent } from './chanels-list/chanels-list.component';
+import { CustomerService } from './customer.service';
 
 @NgModule({
   imports: [
@@ -54,10 +56,28 @@ import { AddRowDirective } from './add-row.directive';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
+    TableModule,
+    CalendarModule,
+    SliderModule,
+    DialogModule,
+    MultiSelectModule,
+    ContextMenuModule,
+    DropdownModule,
+    ButtonModule,
+    ToastModule,
+    InputTextModule,
+    ProgressBarModule,
+    HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([{ path: '', component: AppComponent }]),
   ],
-  declarations: [AppComponent, AddRowDirective],
+  declarations: [AppComponent, AddRowDirective, ChanelsListComponent],
   bootstrap: [AppComponent],
-  providers: [ProductService, MessageService, ConfirmationService],
+  providers: [
+    ProductService,
+    MessageService,
+    ConfirmationService,
+    CustomerService,
+  ],
 })
 export class AppModule {}
