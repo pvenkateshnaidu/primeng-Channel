@@ -13,11 +13,17 @@ import { Table } from 'primeng/table';
 export class AppComponent {
   statuses: SelectItem[];
   loading: Boolean;
+  groupname: string;
   currentUserId: String;
   isRowEditable: Boolean = false;
   isButtonDisabled: Boolean = true;
   products: any[];
+  channelTypes: any[];
+  enginelayouts: any[];
+  enginetypes: any[];
+  dltypes: any[];
 
+  directionTypes: any[];
   constructor(
     private productService: ProductService,
     private messageService: MessageService,
@@ -25,8 +31,15 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
+    this.isButtonDisabled = true;
     this.currentUserId = sessionStorage.getItem('userId');
     this.getTableData();
+    this.channelTypes = [{ name: 'Channel Type', code: 'NY' }];
+    this.directionTypes = [
+      { name: 'X', code: 'X' },
+      { name: 'Y', code: 'Y' },
+      { name: 'Z', code: 'Z' },
+    ];
   }
 
   getTableData() {
@@ -35,7 +48,6 @@ export class AppComponent {
       this.products = data;
       this.loading = false;
       this.isRowEditable = false;
-      this.isButtonDisabled = false;
     });
   }
 
@@ -50,6 +62,9 @@ export class AppComponent {
     return {
       id: 0,
       name: '',
+      channelType: '',
+      channelDescription: '',
+      direction: '',
     };
   }
 

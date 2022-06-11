@@ -1,5 +1,46 @@
 <div style="width: 100%;">
-  <h2 class="header-color">Products</h2>
+  <div class="p-grid">
+    <div class="p-col">
+      <span class="p-mr-3">Group Name</span>
+      <input [(ngModel)]="groupname" pInputText type="text" />
+    </div>
+    <div class="p-col">
+      <span class="p-mr-2">D L Type</span>
+      <p-dropdown
+        [options]="dltypes"
+        [(ngModel)]="dltype"
+        optionLabel="name"
+        placeholder="DL Type"
+      ></p-dropdown>
+    </div>
+    <div class="p-col">
+      <span class="p-mr-2">Engine Layout</span>
+      <p-dropdown
+        [options]="enginelayouts"
+        [(ngModel)]="enginelayout"
+        optionLabel="name"
+        placeholder="Engine Layout"
+      ></p-dropdown>
+    </div>
+    <div class="p-col">
+      <span class="p-mr-2">Engine Type</span>
+      <p-dropdown
+        [options]="enginetypes"
+        [(ngModel)]="enginetype"
+        optionLabel="name"
+        placeholder="Engine Type"
+      ></p-dropdown>
+    </div>
+    <div class="p-col">
+      <span class="p-mr-2">Relavent Trans Type</span>
+      <p-dropdown
+        [options]="relaventtypea"
+        [(ngModel)]="relaventtype"
+        optionLabel="name"
+        placeholder="Relavent Trans Type"
+      ></p-dropdown>
+    </div>
+  </div>
   <div class="card">
     <p-table
       #dt
@@ -67,8 +108,26 @@
             <p-cellEditor>
               <ng-template pTemplate="input">
                 <p>
+                  <p-dropdown
+                    [options]="channelTypes"
+                    [(ngModel)]="channelType"
+                    optionLabel="name"
+                    placeholder="Channel Type"
+                  ></p-dropdown>
+                </p>
+              </ng-template>
+
+              <ng-template pTemplate="output">
+                {{ product?.channelType }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p>
                   <input
-                    [(ngModel)]="product.name"
+                    [(ngModel)]="product.channelDescription"
                     pInputText
                     style="width:77%"
                     type="text"
@@ -85,30 +144,12 @@
             <p-cellEditor>
               <ng-template pTemplate="input">
                 <p>
-                  <input
-                    [(ngModel)]="product.name"
-                    pInputText
-                    style="width:77%"
-                    type="text"
-                  />
-                </p>
-              </ng-template>
-
-              <ng-template pTemplate="output">
-                {{ product?.name }}
-              </ng-template>
-            </p-cellEditor>
-          </td>
-          <td>
-            <p-cellEditor>
-              <ng-template pTemplate="input">
-                <p>
-                  <input
-                    [(ngModel)]="product.name"
-                    pInputText
-                    style="width:77%"
-                    type="text"
-                  />
+                  <p-multiSelect
+                    [options]="directionTypes"
+                    [(ngModel)]="direction"
+                    optionLabel="name"
+                    placeholder="Direction Type"
+                  ></p-multiSelect>
                 </p>
               </ng-template>
 
