@@ -55,6 +55,14 @@
                   type="text"
                 />
               </p>
+              <strong>DL Type</strong><br />
+              <p-dropdown
+                [options]="channelTypes"
+                [(ngModel)]="customer.channelType"
+                optionLabel="name"
+                optionValue="value"
+                placeholder="DL Type"
+              ></p-dropdown>
             </ng-template>
 
             <ng-template pTemplate="output">
@@ -74,6 +82,15 @@
                   placeholder="Channel Type"
                 ></p-dropdown>
               </p>
+
+              <strong>Engine Type</strong><br />
+              <p-dropdown
+                [options]="channelTypes"
+                [(ngModel)]="customer.channelType"
+                optionLabel="name"
+                optionValue="value"
+                placeholder="Engine Type"
+              ></p-dropdown>
             </ng-template>
 
             <ng-template pTemplate="output">
@@ -92,6 +109,14 @@
                   type="text"
                 />
               </p>
+              <strong>Test Type</strong><br />
+              <p-dropdown
+                [options]="channelTypes"
+                [(ngModel)]="customer.channelType"
+                optionLabel="name"
+                optionValue="value"
+                placeholder="Test Type"
+              ></p-dropdown>
             </ng-template>
 
             <ng-template pTemplate="output">

@@ -5,11 +5,13 @@
       "groupName": "Tacho Channels",
       "channelName": "Engine_Tacho",
       "channelType": "Single",
+      "dlType": "test",
       "channelDescription": "Tacho Description"
     },
     {
       "id": 1001,
       "groupName": "Engine Mics",
+      "dlType": "test",
       "channelName": "PEL",
       "channelType": "Single",
       "channelDescription": "Engine Mics Description"
@@ -17,6 +19,7 @@
     {
       "id": 1002,
       "groupName": "Tacho Channels",
+      "dlType": "test",
       "channelName": "DrivesShaft_Tacho",
       "channelType": "Single",
       "channelDescription": "Tacho Description"
@@ -24,6 +27,7 @@
     {
       "id": 1004,
       "groupName": "Engine Mics",
+      "dlType": "test",
       "channelName": "PER",
       "channelType": "Single",
       "channelDescription": "Engine Mics Description"
