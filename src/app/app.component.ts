@@ -13,7 +13,7 @@ import { Table } from 'primeng/table';
 export class AppComponent {
   statuses: SelectItem[];
   loading: Boolean;
-  groupname: string;
+
   currentUserId: String;
   isRowEditable: Boolean = false;
   isButtonDisabled: Boolean = true;
@@ -21,7 +21,13 @@ export class AppComponent {
   channelTypes: any[];
   enginelayouts: any[];
   enginetypes: any[];
+  relaventtypes: any[];
   dltypes: any[];
+  dltype: SelectItem;
+  relaventtype: SelectItem;
+  enginelayout: SelectItem;
+  enginetype: SelectItem;
+  groupname: string;
 
   directionTypes: any[];
   constructor(
@@ -34,14 +40,35 @@ export class AppComponent {
     this.isButtonDisabled = true;
     this.currentUserId = sessionStorage.getItem('userId');
     this.getTableData();
-    this.channelTypes = [{ name: 'Channel Type', code: 'NY' }];
+    this.channelTypes = [{ name: 'Tacho', code: 'Tacho' }];
+    this.dltypes = [
+      { name: 'All', code: 'All' },
+      { name: 'PPD', code: 'PPD' },
+    ];
+    this.enginelayouts = [
+      { name: 'All', code: 'All' },
+      { name: 'Tacho', code: 'NY' },
+    ];
+    this.enginetypes = [
+      { name: 'All', code: 'All' },
+      { name: 'NS42', code: 'NY' },
+    ];
+    this.relaventtypes = [
+      { name: 'All', code: 'All' },
+      { name: 'PPM', code: 'NY' },
+    ];
     this.directionTypes = [
       { name: 'X', code: 'X' },
       { name: 'Y', code: 'Y' },
       { name: 'Z', code: 'Z' },
     ];
   }
-
+  onChange(event) {
+    console.log(this.groupname.length);
+    if (this.groupname.length > 0 && this.dltype) {
+      alert();
+    }
+  }
   getTableData() {
     this.loading = true;
     this.productService.getProducts().then((data) => {

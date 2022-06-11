@@ -11,6 +11,7 @@
         [(ngModel)]="dltype"
         optionLabel="name"
         placeholder="DL Type"
+        (change)="onChange($event.target.value)"
       ></p-dropdown>
     </div>
     <div class="p-col">
@@ -19,6 +20,7 @@
         [options]="enginelayouts"
         [(ngModel)]="enginelayout"
         optionLabel="name"
+        (change)="onChange($event.target.value)"
         placeholder="Engine Layout"
       ></p-dropdown>
     </div>
@@ -27,6 +29,7 @@
       <p-dropdown
         [options]="enginetypes"
         [(ngModel)]="enginetype"
+        (change)="onChange($event.target.value)"
         optionLabel="name"
         placeholder="Engine Type"
       ></p-dropdown>
@@ -34,8 +37,9 @@
     <div class="p-col">
       <span class="p-mr-2">Relavent Trans Type</span>
       <p-dropdown
-        [options]="relaventtypea"
+        [options]="relaventtypes"
         [(ngModel)]="relaventtype"
+        (change)="onChange($event.target.value)"
         optionLabel="name"
         placeholder="Relavent Trans Type"
       ></p-dropdown>
