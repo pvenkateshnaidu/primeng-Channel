@@ -17,17 +17,18 @@ export class AppComponent {
   currentUserId: String;
   isRowEditable: Boolean = false;
   isButtonDisabled: Boolean = true;
+  isSaveDisabled: Boolean = true;
   products: any[];
   channelTypes: any[];
   enginelayouts: any[];
   enginetypes: any[];
   relaventtypes: any[];
   dltypes: any[];
-  dltype: SelectItem;
-  relaventtype: SelectItem;
-  enginelayout: SelectItem;
-  enginetype: SelectItem;
-  groupname: string;
+  dltype: any;
+  relaventtype: any;
+  enginelayout: any;
+  enginetype: any;
+  groupname: string = '';
 
   directionTypes: any[];
   constructor(
@@ -40,33 +41,44 @@ export class AppComponent {
     this.isButtonDisabled = true;
     this.currentUserId = sessionStorage.getItem('userId');
     this.getTableData();
-    this.channelTypes = [{ name: 'Tacho', code: 'Tacho' }];
+    this.channelTypes = [
+      { name: 'Single', value: 'Single' },
+      { name: 'Vibration', value: 'vibration' },
+    ];
     this.dltypes = [
-      { name: 'All', code: 'All' },
-      { name: 'PPD', code: 'PPD' },
+      { name: 'All', value: 'All' },
+      { name: 'PPD', value: 'PPD' },
     ];
     this.enginelayouts = [
-      { name: 'All', code: 'All' },
-      { name: 'Tacho', code: 'NY' },
+      { name: 'All', value: 'All' },
+      { name: 'Tacho', value: 'NY' },
     ];
     this.enginetypes = [
-      { name: 'All', code: 'All' },
-      { name: 'NS42', code: 'NY' },
+      { name: 'All', value: 'All' },
+      { name: 'NS42', value: 'NY' },
     ];
     this.relaventtypes = [
-      { name: 'All', code: 'All' },
-      { name: 'PPM', code: 'NY' },
+      { name: 'All', value: 'All' },
+      { name: 'PPM', value: 'NY' },
     ];
     this.directionTypes = [
-      { name: 'X', code: 'X' },
-      { name: 'Y', code: 'Y' },
-      { name: 'Z', code: 'Z' },
+      { name: 'X', value: 'X' },
+      { name: 'Y', value: 'Y' },
+      { name: 'Z', value: 'Z' },
     ];
   }
   onChange(event) {
     console.log(this.groupname.length);
-    if (this.groupname.length > 0 && this.dltype) {
-      alert();
+    if (
+      this.groupname.length > 2 &&
+      this.dltype &&
+      this.enginelayout &&
+      this.enginetype &&
+      this.relaventtype
+    ) {
+      this.isButtonDisabled = false;
+    } else {
+      this.isButtonDisabled = true;
     }
   }
   getTableData() {
@@ -98,6 +110,7 @@ export class AppComponent {
   newRowAdd(table: Table) {
     this.isRowEditable = true;
     this.clear(table);
+    this.isSaveDisabled = true;
   }
 
   show(summary: String, details: String, severity: string) {
@@ -119,10 +132,12 @@ export class AppComponent {
     }
 
     this.isRowEditable = false;
+    this.isSaveDisabled = false;
   }
 
   onRowEditSave(user: any, table: Table) {
     this.isRowEditable = false;
+    this.isSaveDisabled = false;
   }
 
   private onRowDeleteInit(event: Event, id: any, cdsid: string) {

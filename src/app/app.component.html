@@ -2,7 +2,12 @@
   <div class="p-grid">
     <div class="p-col">
       <span class="p-mr-3">Group Name</span>
-      <input [(ngModel)]="groupname" pInputText type="text" />
+      <input
+        [(ngModel)]="groupname"
+        pInputText
+        type="text"
+        (keydown)="onChange($event)"
+      />
     </div>
     <div class="p-col">
       <span class="p-mr-2">D L Type</span>
@@ -11,7 +16,7 @@
         [(ngModel)]="dltype"
         optionLabel="name"
         placeholder="DL Type"
-        (change)="onChange($event.target.value)"
+        (onChange)="onChange($event)"
       ></p-dropdown>
     </div>
     <div class="p-col">
@@ -20,7 +25,7 @@
         [options]="enginelayouts"
         [(ngModel)]="enginelayout"
         optionLabel="name"
-        (change)="onChange($event.target.value)"
+        (onChange)="onChange($event)"
         placeholder="Engine Layout"
       ></p-dropdown>
     </div>
@@ -29,7 +34,7 @@
       <p-dropdown
         [options]="enginetypes"
         [(ngModel)]="enginetype"
-        (change)="onChange($event.target.value)"
+        (onChange)="onChange($event)"
         optionLabel="name"
         placeholder="Engine Type"
       ></p-dropdown>
@@ -39,7 +44,7 @@
       <p-dropdown
         [options]="relaventtypes"
         [(ngModel)]="relaventtype"
-        (change)="onChange($event.target.value)"
+        (onChange)="onChange($event)"
         optionLabel="name"
         placeholder="Relavent Trans Type"
       ></p-dropdown>
@@ -114,8 +119,9 @@
                 <p>
                   <p-dropdown
                     [options]="channelTypes"
-                    [(ngModel)]="channelType"
+                    [(ngModel)]="product.channelType"
                     optionLabel="name"
+                    optionValue="value"
                     placeholder="Channel Type"
                   ></p-dropdown>
                 </p>
@@ -150,9 +156,10 @@
                 <p>
                   <p-multiSelect
                     [options]="directionTypes"
-                    [(ngModel)]="direction"
+                    [(ngModel)]="product.direction"
                     optionLabel="name"
                     placeholder="Direction Type"
+                    [disabled]="product.channelType?.value != 'vibration'"
                   ></p-multiSelect>
                 </p>
               </ng-template>
@@ -208,4 +215,15 @@
       </ng-template>
     </p-table>
   </div>
+</div>
+
+<div class="pull-left" style="float:right">
+  <button
+    [label]="'Save'"
+    class="ui-button-info p-m-4"
+    icon="pi pi-plus"
+    pButton
+    [disabled]="isSaveDisabled"
+    type="button"
+  ></button>
 </div>
